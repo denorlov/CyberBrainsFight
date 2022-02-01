@@ -1,3 +1,5 @@
+import random
+
 msg_to_decode = ""
 with open('dantes.txt', encoding="UTF-8") as msg_file:
     msg = msg_file.read()
@@ -43,15 +45,23 @@ def detect_is_russia(msg:str, russian_words:set):
     return int(ru_words_count / words_count * 100) if ru_words_count > 0 else 0
 
 #msg = "мама ура!"
-key = 3
+key = random.randint(2, len(msg) // 4)
 print(f"key={key}")
 print(f"msg:|"+msg+"|")
-en_msg = encrypt_transpos(msg, key)
-print("enc:|" + en_msg + "|")
-is_rus_probability = detect_is_russia(en_msg, russian_words)
-print(f"is_rus_probability:{is_rus_probability}")
+print("-" * 25)
 
-dec_msg = decrypt_transpos(en_msg, key)
-is_rus_probability = detect_is_russia(dec_msg, russian_words)
-print("dec:|" + dec_msg + "|")
-print(f"is_rus_probability:{is_rus_probability}")
+en_msg = encrypt_transpos(msg, key)
+
+for key_guess in range(2, len(msg)):
+    dec_msg = decrypt_transpos(en_msg, key)
+    is_rus_probability = detect_is_russia(dec_msg, russian_words)
+    if is_rus_probability > 65:
+        print("-" * 25)
+        print(f"key_guess: {key_guess}")
+        print(f"is_rus_probability:{is_rus_probability}")
+        print("dec:|" + dec_msg + "|")
+
+print("-" * 25)
+print("enc:|" + en_msg + "|")
+print(f"key={key}")
+print("-" * 25)
