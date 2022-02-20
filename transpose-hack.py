@@ -45,7 +45,8 @@ def detect_is_russia(msg:str, russian_words:set):
     return int(ru_words_count / words_count * 100) if ru_words_count > 0 else 0
 
 #msg = "мама ура!"
-key = random.randint(2, len(msg) // 4)
+#key = random.randint(2, len(msg) // 4)
+#key = random.randint(2, len(msg) // 4)
 print(f"key={key}")
 print(f"msg:|"+msg+"|")
 print("-" * 25)

@@ -2,8 +2,8 @@
 # https://www.nostarch.com/crackingcodes (BSD Licensed)
 
 def main():
-    myMessage = '''мама звонит грише и'''
-    myKey = 3
+    myMessage = "ТЕРМИНАТОР ПРЕБЫВАЕТ В ПОЛНОЧЬ"
+    myKey = 13
 
     ciphertext = encryptMessage(myKey, myMessage)
 
